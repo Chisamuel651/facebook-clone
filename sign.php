@@ -62,5 +62,41 @@
             </form>
         </div>
     </div>
+
+    <script src="assets/js/jquery.js"></script>
+    <script>
+        // display year
+        for(i = new Date().getFullYear(); i>1900; i--){
+            $("#years").append($('<option/>').val(i).html(i));
+        }
+
+        // display number of months
+        for(i=1; i<13; i++){
+            $("#months").append($('<option/>').val(i).html(i));
+        }
+
+        // number of days
+        updateNumberOfDays();
+
+        function daysInMonth(month, year){
+            return new Date(year, month, 0).getDate();
+        }
+
+        function updateNumberOfDays(){
+            $("#days").html('');
+            month = $('#months').val();
+            year = $('#years').val();
+            day = daysInMonth(month, year);
+
+            for(i=1; i<day+1; i++){
+                $("#days").append($('<option/>').val(i).html(i));
+            }
+        }
+
+        // updates the number of days according to year and month
+        $('#years, #months').on('change', function(){
+            updateNumberOfDays();
+        });
+    </script>
 </body>
 </html>
