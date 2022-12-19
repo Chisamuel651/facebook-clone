@@ -95,4 +95,5 @@ input.sign-up {
     border: 1px solid gray;
     margin: 14px 0;
     font-size: 18px;
+    cursor: pointer;
 }

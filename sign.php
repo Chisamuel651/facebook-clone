@@ -1,3 +1,28 @@
+
+<?php
+    require('connect/DB.php');
+    if( isset($_POST['first_name']) && !empty($_POST['first_name'])){
+        $upFirst = $_POST['first_name'];
+        $upLast = $_POST['last_name'];
+        $upEmailMobile = $_POST['email_number'];
+        $upPassword = $_POST['up_password'];
+        $birthDay = $_POST['birth_day'];
+        $birthMonth = $_POST['birth_month'];
+        $birthYear = $_POST['birth_year'];
+
+        if (!empty($_POST['gen'])) {
+            $upGen = $_POST['gen'];
+        }
+
+        $birth = '' . $birthYear . '-' . $birthMonth . '-' . $birthDay;
+        if( empty($upFirst) or empty($upLast) or empty($upEmailMobile) or empty($upGen)){
+            $error = 'All fields are required.';
+        }
+    }else{
+        echo 'User not found';
+    }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +39,14 @@
         </div>
 
         <div class="right_side">
-            <div class="error"></div>
+            <div class="error">
+                <?php
+                    if(!empty($error)){
+                        echo $error;
+                    }    
+                ?>
+            </div>
+
 
             <h1 class="title_h" style="color: #212121;">create an account</h1>
 
