@@ -1,6 +1,7 @@
 
 <?php
-    require('connect/DB.php');
+    require 'core/load.php';
+
     if( isset($_POST['first_name']) && !empty($_POST['first_name'])){
         $upFirst = $_POST['first_name'];
         $upLast = $_POST['last_name'];
@@ -17,9 +18,12 @@
         $birth = '' . $birthYear . '-' . $birthMonth . '-' . $birthDay;
         if( empty($upFirst) or empty($upLast) or empty($upEmailMobile) or empty($upGen)){
             $error = 'All fields are required.';
+        }else{
+        $first_name = $loadFromUser->checkInput($upFirst);
         }
-    }else{
-        echo 'User not found';
+    }
+    else{
+        echo "User not found";
     }
 ?>
 
